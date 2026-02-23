@@ -1,0 +1,14 @@
+name: Keep Alive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping-health-endpoint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call health endpoint
+        run: |
+          curl --fail --silent --show-error --max-time 20 "https://mern-chat-app-z3y3.onrender.com/api/health/db"
