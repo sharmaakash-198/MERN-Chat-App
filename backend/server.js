@@ -13,7 +13,7 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 
 const __dirname = path.resolve();
-// PORT should be assigned after calling dotenv.config() because we need to access the env variables.
+const PORT = process.env.PORT || 4000;
 
 app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
 app.use(cookieParser());
