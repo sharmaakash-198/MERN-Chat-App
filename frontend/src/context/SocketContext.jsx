@@ -15,12 +15,22 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const newSocket = io("http://localhost:4000", {
+			// const newSocket = io("http://localhost:4000", {
+			// 	query: {
+			// 		userId: authUser._id,
+			// 	},
+			// });
+			
+			const URL =
+			import.meta.env.VITE_SOCKET_URL || window.location.origin;
+			
+			const newSocket = io(URL, {
 				query: {
 					userId: authUser._id,
 				},
 			});
-
+			{/* above will be used in production */}
+			
 			setSocket(newSocket);
 
 			newSocket.on("getOnlineUsers", (users) => {
